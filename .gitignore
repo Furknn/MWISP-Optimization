@@ -2,3 +2,8 @@
 /.idea/
 /Generated_Graphs/
 /Greedy_Solutions/
+/MIP_Solutions/
+*.pdf
+/Genetic_Solutions/
+*.png
+*.jpg

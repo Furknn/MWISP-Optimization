@@ -13,23 +13,16 @@ class MWISPGreedy:
 
     def Solve(self):
         print("Greedy solver started")
-
         timestamp = int(time.time())
-        solutions_directory = "./Greedy_Solutions"
-        solution_directory = "./Greedy_Solutions/Greedy_Solution_" + str(self.graph.num_nodes) + "_d" + str(
-            int(self.graph.density * 10)) + "_" + str(timestamp)
 
-        if not os.path.exists(solutions_directory):
-            os.mkdir(solutions_directory)
-
-        if not os.path.exists(solution_directory):
-            os.mkdir(solution_directory)
-
+        # Generate a string of 0
+        # Greedily pick the node with the biggest value, make its value 1
+        # If string becomes unfeasible, make it 0 again
+        # Greedily pick next node with the biggest value
+        # Repeat as much as number of nodes in graph
         self.solution_string = [0] * self.graph.num_nodes
         self.copy_of_node_weights = self.graph.node_weights.copy()
-
         for i in range(self.graph.num_nodes):
-
             max_node_weight_index = numpy.argmax(self.copy_of_node_weights)
             sol_str = self.solution_string.copy()
             sol_str[max_node_weight_index] = 1
@@ -40,6 +33,16 @@ class MWISPGreedy:
             else:
                 self.copy_of_node_weights[max_node_weight_index] = 0
 
+        # Logging and Report
+        solutions_directory = "./Greedy_Solutions"
+        solution_directory = "./Greedy_Solutions/Greedy_Solution_" + str(self.graph.num_nodes) + "_d" + str(
+            int(self.graph.density * 10)) + "_" + str(timestamp)
+
+        if not os.path.exists(solutions_directory):
+            os.mkdir(solutions_directory)
+
+        if not os.path.exists(solution_directory):
+            os.mkdir(solution_directory)
         final_solution_string = [str(i) for i in self.solution_string]
         final_solution_string = "".join(final_solution_string)
         solution_file = open(solution_directory + "/MWISP_n" + str(self.graph.num_nodes) + "_d" + str(
