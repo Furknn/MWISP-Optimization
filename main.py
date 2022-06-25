@@ -49,7 +49,6 @@ def generate_graphs(node_counts: list[int], densities: list[float]):
             Graph(node_count, density)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     generate_graphs([500, 1000, 1500, 2000], [0.1, 0.3, 0.5, 0.7, 0.9])
     solve_mips("/.Generated_Graphs")
